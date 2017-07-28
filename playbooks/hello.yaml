@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: yes
+  tasks: 
+  # ansible all -m ping 
+  - name: This is used for pining
+    ping:  
+  
+
