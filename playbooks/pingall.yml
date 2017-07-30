@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: Ping all
+    ping:
+  - name: this task will display value
+    debug:
+      msg: "System {{ inventory_hostname }} has gateway {{ ansible_default_ipv4.gateway }}"
+      msg: "{{ansible_distribution}}"
+

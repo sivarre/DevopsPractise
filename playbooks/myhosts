@@ -1,0 +1,7 @@
+[local]
+localhost
+
+[webserver]
+localhost
+ip-172-31-3-86.us-west-2.compute.internal
+

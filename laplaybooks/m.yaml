@@ -1,0 +1,16 @@
+---
+- hosts: local
+  become: yes
+  vars_files:
+  - list.yaml
+  vars:
+    control_server: helloworld
+  tasks:
+  - name: print random content
+    debug:
+      msg: "{{ control_server }}"
+  - name: installing {{ install_list }}
+    yum: 
+      name: "{{ install_list }}"
+      state: present
+

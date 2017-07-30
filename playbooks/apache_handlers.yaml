@@ -1,0 +1,14 @@
+---
+- hosts: local
+  become: yes
+  tasks: 
+  - name: install apache
+    yum:
+      name: httpd
+      state: present
+    notify: restart_apache
+  handlers:
+  - name: restart_apache
+    service:
+      name: httpd
+      state: restarted

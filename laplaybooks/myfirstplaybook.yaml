@@ -1,0 +1,29 @@
+---
+- hosts: local
+  become: yes
+  user: ansible
+  connection: ssh
+  gather_facts: no
+  vars:
+    playbooks_version: 0.1b
+  vars_files:
+  - conf/copyright.yaml
+  - conf/webdefaults.yaml
+  vars_prompt:
+    - name: web_domain
+      prompt: Enter web domain
+  tasks:
+  - name: Enter a message
+    debug:
+      msg: "{{ web_domain }}"
+  - name: Install Aapache web server
+    yum:
+      name: httpd
+      state: present
+    notify: restart_httpd
+  handlers:
+   - name: restart_httpd
+     service:
+       name: httpd
+       state: restarted
+

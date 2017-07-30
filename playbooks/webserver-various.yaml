@@ -1,0 +1,22 @@
+---
+- hosts: webserver
+  become: yes
+  tasks:
+  - name: just to print varibls
+    debug:
+      msg: "{{ web_pack }}"
+
+  - name: installing tree
+    yum:
+      name: tree
+
+  - name: Installing webserver
+    yum:
+      name: "{{ web_pack }}"
+      state: installed
+
+  - name: enabling and starting webserver
+    service:
+      name: "{{ web_pack }}"
+      state: started
+      enabled: yes

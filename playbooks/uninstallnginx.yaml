@@ -1,0 +1,8 @@
+---
+- hosts: local
+  become: yes
+  tasks:
+  - name: Uninstall Nginx
+    yum:
+      name: nginx
+      state: removed

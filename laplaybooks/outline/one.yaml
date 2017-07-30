@@ -1,0 +1,12 @@
+--- # outline to playbook transliation
+- hosts: all
+  user: ansible
+  become: yes
+  gather_facts: no
+  tasks:
+  - name: date/stamp for when the playbook started
+    command: /usr/bin/date
+    register: timestamp_start
+  - name: display timestamp_start 
+    debug: 
+      var: timestamp_start
