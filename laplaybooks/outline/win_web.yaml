@@ -1,0 +1,45 @@
+--- # outline to playbook transliation
+- hosts: all
+  user: ansible
+  become: yes
+  gather_facts: no
+  tasks:
+  - name: date/stamp for when the playbook started
+    command: /usr/bin/date
+    register: timestamp_start
+  - name: display timestamp_start 
+    debug: 
+      var: timestamp_start
+  - name: Install apache webserver
+    yum:
+      name: httpd
+      state: present
+    notify: restart_httpd
+  - name: install client software
+    yum:
+      name: telnet
+      state: present
+  - name: install tree
+    yum:
+      name: tree
+      state: present
+  - name: log all installed packages
+    command: yum list installed
+    register: result
+  - name: Display to know packages installed
+    debug: 
+      var: result
+  - name: date/time stamp when playbook ends
+    command: /usr/bin/date
+    register: timestamp_end
+  - name: Display timestamp_end
+    debug: 
+      var: timestamp_end
+  handlers: 
+  - name: restart_httpd
+    service: 
+      name: httpd
+      state: restarted
+
+
+      

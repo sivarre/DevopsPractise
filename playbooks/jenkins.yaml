@@ -16,7 +16,7 @@
     get_url:
       url: http://ftp-chi.osuosl.org/pub/jenkins/war-stable/2.60.1/jenkins.war
       dest: /usr/share/tomcat/webapps/jenkins.war
-  - name: enable and Start apache service 
+  - name: enable and Start apache service f
     service:
       name: tomcat
       state: started
